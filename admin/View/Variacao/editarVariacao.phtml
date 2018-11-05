@@ -1,0 +1,140 @@
+<?php
+//instanciando os objetos
+$variacao = new Variacao();
+$variacaoController = new VariacaoController();
+$helper = new Helper();
+
+//$listarCategoria = $categoriaController->ListarCategoria();
+$resultado = "";
+
+//pegando a url
+$cod = filter_input(INPUT_GET, 'cod', FILTER_SANITIZE_STRING);
+
+
+$btnAtualiza = filter_input(INPUT_POST, 'btnAtualiza', FILTER_SANITIZE_STRING);
+if($btnAtualiza):
+   
+    $variacao->setCod_variavel($cod = filter_input(INPUT_GET, 'cod', FILTER_SANITIZE_STRING));
+    $variacao->setTitulo_variavel(filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING));    
+    $variacao->setStatus_variavel(filter_input(INPUT_POST, 'slStatus', FILTER_SANITIZE_NUMBER_INT));    
+  
+    if ($variacaoController->Atualizar($variacao)):        
+        $resultado = '<div class="alert alert-info">
+                <button type="button" aria-hidden="true" class="close">×</button>
+                <span><b> Atualizado com sucesso - </b></span>
+            </div>';
+    else:
+        $resultado = '<div class="alert alert-danger">
+                <button type="button" aria-hidden="true" class="close">×</button>
+                <span><b> Erro ao atualizar, tente mais tarde - </b></span>
+            </div>';
+    endif;
+endif;
+
+
+
+$retornaVariacao = $variacaoController->retornaVariacao($cod);
+if ($retornaVariacao == null):
+
+else:
+    $titulo = $retornaVariacao->getTitulo_variavel();
+    $status = $retornaVariacao->getStatus_variavel();
+    
+?>
+
+
+<div class="main-panel">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar bar1"></span>
+                    <span class="icon-bar bar2"></span>
+                    <span class="icon-bar bar3"></span>
+                </button>
+                <a class="navbar-brand" href="?pagina=listaVariacao">Lista de Variações</a>
+            </div>
+              <?php require_once './inc/header_top.php'; ?>
+        </div>
+    </nav>
+
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-7">
+
+                    <!-- ---------------------------------------------------------------------------------CAMPO DE ATUALIZAÇÃO CATEGORIA--------------------------------- -->
+
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Atualizar Variação</h4>
+                                
+                        </div>
+                        <div class="content">
+                            <form method="post">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" name="titulo" class="form-control border-input" placeholder="Título da Categoria" value="<?= $titulo ?>">
+                                        </div>
+                                    </div>                                    
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Status</label>
+                                            <select name="slStatus" class="form-control border-input">
+                                                <?php
+                                                    if ($status == 1):
+                                                            ?>
+                                                            <option value="1" selected='selected'>Ativo</option>
+                                                            <?php
+                                                        else:
+                                                            ?>
+                                                            <option value="2" selected='selected'>Bloqueado</option>
+                                                        <?php
+                                                        endif;
+                                                        if ($status != 1):
+                                                            ?>
+                                                            <option value="1" <?php $status == 1 ? "selected='selected'" : "" ?>>Ativo</option>
+                                                            <?php
+                                                        else:
+                                                            ?>
+                                                            <option value="2" <?php $status == 2 ? "selected='selected'" : "" ?>>Bloqueado</option>
+                                                        <?php
+                                                        endif;
+                                                    ?>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>                                
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <?php echo $resultado; ?>
+                                    </div>
+
+                                </div>                               
+
+
+                                <div class="text-center">
+                                    <input type="submit" class="btn btn-success btn-fill btn-wd" name="btnAtualiza" value="Atualizar">
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+<?php
+endif;
+?>

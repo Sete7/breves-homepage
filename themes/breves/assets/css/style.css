@@ -1,0 +1,150 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 31/10/2018, 01:03:56
+    Author     : junio
+*/
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+*{margin: 0;padding: 0;box-sizing: border-box;-moz-box-sizing: border-box;font-family: 'Open Sans', sans-serif;}
+a{text-decoration: none;}
+img{width: 100%;float: left;}
+.font-zero{font-size: 0;}
+.clear{clear: both;}
+.container{width: 100%;float: left;}
+.content{width: 80%;margin: 0 10%;}
+
+.main-header{
+    height: 150px;
+    background: url(./../image/fundo-topo.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.main-logo{width: 300px;    position: relative;top: 55px;}
+.main-logo a{width: 100%;}
+.box-menu{float: right;position: relative; position: relative;top: 60px;
+          background: red;
+          border-radius: 10rem 0 0 0;
+}
+.menu{list-style: none;float: left;position: relative;padding: 0.5rem 0 0.5rem 7rem;}
+.menu li{float: left;padding: 0 0.5rem;color: #fff;}
+.menu li:nth-child(2){border-left: 3px solid rgba(0,0,0,0.5);}
+.menu li:nth-child(3){border-left: 3px solid rgba(0,0,0,0.5);}
+.menu li:nth-child(4){border-left: 3px solid rgba(0,0,0,0.5);}
+.menu li a{color: #fff;line-height: 70px; padding: 0 0.3rem;}
+.menu strong .fa-angle-down{font-weight: 800;}
+.menu li a:hover{text-decoration: underline;}
+.menu li ul{position:absolute; top:89px; left:238px;background-color:#ff0000;width: 250px;height: auto;padding: 0 15px;display: none;z-index: 3;}
+.menu ul li:last-child { 
+    box-shadow: none;    
+}
+.menu ul li:first-child a:after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: -7px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #ff0000;        
+}
+.menu li:hover ul, .menu li.over ul{display:block;}
+.menu li ul li{display:block;width: 100%;margin: 0;
+               height: 50px;line-height: 50px;float: left;
+}
+.menu li ul li:nth-child(1){border-left:0;border-bottom: 3px solid rgba(0,0,0,0.5);}
+.menu li ul li:nth-child(2){border-left:0;border-bottom: 3px solid rgba(0,0,0,0.5);}
+.menu li ul li:nth-child(3){border-left:0;border-bottom: 3px solid rgba(0,0,0,0.5);}
+.menu li ul li:nth-child(4){border-left:0;}
+
+.menu li ul li a{color: #fff;padding: 0;margin: 0;line-height: 0;}
+
+/*----------------------------------- SLIDE HOME -------------------------------*/
+
+/*---------------------------- PINOS DE INFORMAÇÃO -------------------------------*/
+.box-info{margin: 2rem 0;}
+.pino{width: calc(25% - 20px);float: left;}
+.pino:nth-child(1){margin: 0 10px 0 0;}
+.pino:nth-child(2){margin: 0  15px 0 15px;}
+.pino:nth-child(3){margin: 0  15px 0 15px;}
+.pino:nth-child(4){margin: 0 0 0 10px;}
+/*---------------------------- OFERTAS -------------------------------*/
+.art-ofertas{width: 100%;float: left;margin-bottom: 3.5rem;}
+.titulo-ofertas{width: 100%;background: #ff0000;padding: 1rem 2rem;margin-bottom: 2rem;}
+.titulo-ofertas h2{color: #fff;font-size: 2rem;}
+.box-produto{width: 100%;float: left;}
+.produto{width: calc(20% - 20px);float: left; margin: 1rem 10px;padding: 0.5rem;}
+.produto:hover{border: 1px solid #ff0000;}
+
+.thumb-desconto{width: 100%;height: 2rem;float: left;background: #ff0000;margin-bottom: 1rem;}
+.thumb-desconto h3{position: relative;text-align: center;color: #fff;line-height: 2rem;}
+.thumb-produto{width: 100%; float: left;}
+.desc-pdt {width: 100%;float: left;text-align: center;}
+.desc-pdt h4{color: #333;margin-bottom: 0.2rem;}
+.desc-pdt span{color: #6d6d6d;margin-bottom: 0.5rem;}
+.unidade{text-transform: lowercase;color: #ff0000 !important;font-size: 1rem;}
+.desc-pdt .price-oferta{color: #333;margin-top: 0.5rem;margin-bottom: 0.1rem;font-size: 0.8rem;}
+.desc-pdt .price{color: #ff0000;margin-bottom: 0.1rem;font-size: 1.5rem;font-weight: bold;}
+
+/*---------------------------- PINOS DE INFORMAÇÃO -------------------------------*/
+.box-info-footer{margin: 2rem 0;border-top: 0.5rem solid #ff0000;border-bottom: 0.5rem solid #ff0000;padding: 0.5rem 0;}
+.pino-footer{width: calc(33.33333333333333% - 20px);float: left;}
+.pino-footer:nth-child(1){margin: 0 10px 0 0;}
+.pino-footer:nth-child(2){margin: 0  20px;}
+.pino-footer:nth-child(3){margin: 0 0 0 10px;}
+/*---------------------------- HOME QUEM SOMOS -------------------------------*/
+.sec-quem{margin-bottom: 7rem;}
+.titulo-quem{width: 100%;background: #150958;padding: 1rem 2rem;margin-bottom: 2rem;}
+.titulo-quem h1{color: #fff;font-size: 2rem;}
+.art-quem-somos{width: 100%;float: left;}
+.thumb-quem{width: 50%;float: left;height: 360px;}
+.box-desc-quem{width: 50%;float: left;}
+.missao{width: calc(100% - 20px);margin-bottom: 0.5rem;margin-left: 1rem;padding: 0.5rem 1.5rem; background-image: linear-gradient(#d3d3d3, #e7e7e7);border-left: 0.5rem solid #150958;}
+.missao h2{font-size: 1.3rem;margin-bottom: 0.3rem;color: #150958; }
+.missao p{font-size: 0.9rem;margin-bottom: 0.8rem;text-align: justify;}
+.mis-one{height: 90px;}
+.mis-two{height: 100px;}
+.mis-three{height: 155px;}
+/*---------------------------- MAIN FOOTER -------------------------------*/
+.main-footer{position: relative;float: left;background: red;}
+.bg-footer{
+    position: relative;    
+    height: auto;    
+    background: url(../image/bg-footer.jpg) #ff0000;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.box-footer{padding: 5rem 2rem;}
+.box-contato{width: 50%;float: left;color: #fff;border-right: 2px solid rgba(0,0,0,0.5);}
+.box-contato h1{margin-bottom: 1rem;}
+.box-contato .div-fone{margin-bottom: 0.5rem;}
+.box-contato .div-fone span{line-height: 1.8;}
+.box-contato .div-fone span i{margin-left: 1rem;}
+.icone-fone{width: 2rem;float: left;}
+.icone-envelope{width: 2rem;float: left;}
+.box-contato .div-envelope span{line-height: 1.8;}
+.box-contato .div-envelope{margin-bottom: 2rem;}
+.box-pagamento{width: 100%;float: left;margin-bottom: 3.5rem;}
+.bandeira{width: 100%;position: relative;list-style: none;}
+.bandeira li{float: left;padding: 0.3rem 0.3rem 0.3rem 0;}
+.thumb-farm-popular{width: 100%;float: left;}
+.thumb-farm-popular img{width: 250px;float: left;}
+
+.face-footer{ width: 320px;border: 0.6rem solid #fff;float: left;margin-left: 10%;}
+.copy{background: #fff;text-align: center;padding: 2rem 0;}
+
+
+
+
+
+
+
+
+
+

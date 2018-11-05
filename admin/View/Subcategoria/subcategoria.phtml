@@ -1,0 +1,142 @@
+<?php
+//instanciando as classes
+//require_once './../Model/Categoria.php';
+//require_once './../Model/Subcategoria.php';
+//require_once './../Controller/CategoriaController.php';
+//require_once './../Controller/SubcategoriaController.php';
+//require_once './../Util/Helper.php';
+
+//instanciando as classes
+$categoria = new Categoria();
+$categoriaController = new CategoriaController();
+$subcategoriaController = new SubcategoriaController();
+$subcategoria = new Subcategoria();
+$helper = new Helper();
+
+$resultado = "";
+
+$btnCadastrar = filter_input(INPUT_POST, 'btnCadastrar', FILTER_SANITIZE_STRING);
+if ($btnCadastrar) {
+    $subcategoria->setSub_titulo(filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING));
+    $subcategoria->setSub_status(filter_input(INPUT_POST, 'slStatus', FILTER_SANITIZE_NUMBER_INT));
+    $subcategoria->setCategoria(filter_input(INPUT_POST, 'slCategoria', FILTER_SANITIZE_NUMBER_INT));
+    $subcategoria->setSub_descricao(filter_input(INPUT_POST, 'txtDescricao', FILTER_SANITIZE_SPECIAL_CHARS));
+    $url = $helper->Name($subcategoria->getSub_titulo());
+    $subcategoria->setSub_url($url);
+    $codCat = filter_input(INPUT_POST, "slCategoria", FILTER_SANITIZE_NUMBER_INT);
+
+
+    if ($subcategoriaController->Cadastrar($subcategoria)):
+        $resultado = '
+            <div class="alert alert-success">            
+            <span><b> Sucesso - </b> Cadastrado com sucesso!</span>
+        </div>';
+    else:
+        $resultado = '
+            <div class="alert alert-warning">
+                <span><b> Alerta - </b> Todos os dados são obrigatórios!</span>
+            </div>';
+    endif;
+}
+?>
+
+<div class="main-panel">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar bar1"></span>
+                    <span class="icon-bar bar2"></span>
+                    <span class="icon-bar bar3"></span>
+                </button>
+                <a class="navbar-brand" href="#">Subcategoria</a>
+            </div>
+            <?php require_once './inc/header_top.php'; ?>
+        </div>
+    </nav>
+
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">              
+
+
+                <div class="col-lg-12 col-md-7">                    
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Subcategoria</h4>                            
+                        </div>                       
+                        
+                        <div class="content">
+                            <form method="post">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" name="titulo" class="form-control border-input" placeholder="Título da Categoria">
+                                        </div>
+                                    </div>                                    
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Status</label>
+                                            <select name="slStatus" class="form-control border-input">
+                                                <option value="">Selecione o status</option>
+                                                <option value="1">Ativo</option>
+                                                <option value="2">Inativo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Categoria</label>
+                                            <select name="slCategoria" class="form-control border-input">
+                                                <?php
+                                                $listarCategoria = $categoriaController->ListarTodasCategorias(0,200);
+
+                                                if ($listarCategoria == null):
+//                                                        var_dump($listarCategoria);
+                                                    echo '<option>não existe categoria cadastrada</option>';
+                                                else:
+                                                    echo "<option value=''>Selecione uma categoria</option>";
+                                                    foreach ($listarCategoria as $cat):
+                                                        echo "<option value='{$cat->getCod()}'>{$cat->getTitulo()}</option>";
+                                                    endforeach;
+                                                endif;
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Breve Descrição </label>
+                                            <input type="text" name="txtDescricao" class="form-control border-input" placeholder="Breve Descriçãoo">
+                                        </div>
+                                    </div>                                   
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <?php echo $resultado;  ?>
+                                    </div>
+                                </div>                               
+
+
+                                <div class="text-center">
+                                    <input type="submit" class="btn btn-success btn-fill btn-wd" name="btnCadastrar" value="Cadastrar">
+                                    <a href="?pagina=listarSubcategoria" class="btn btn-info btn-fill btn-wd">Listar Subcategoria</a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
